@@ -77,3 +77,26 @@ function getFib(x){
 }
 
 getFib(6);
+
+
+// DFS
+
+class Node {
+    constructor (value) {
+        this.value = value;
+        this.children = [];
+    }
+
+    addChild(value){
+        this.children.push(new Node(value));
+        return this;
+    }
+
+    DFS(array){
+        array.push(this.value);
+        for (const child of this.children){
+            child.DFS(array);
+        }
+        return array;
+    }
+}
