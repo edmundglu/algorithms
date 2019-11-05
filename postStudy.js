@@ -100,3 +100,18 @@ class Node {
         return array;
     }
 }
+
+// INVERT BINARY TREE
+
+function invert(root){
+    if (root === null) return;
+    swap(root);
+    invert(root.left);
+    invert(root.right);
+}
+
+function swap(root){
+    const temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+}
