@@ -1,3 +1,21 @@
+//TWO SUM
+function twoSum(array, target){
+    array.sort((a,b) => a - b);
+    let left = 0;
+    let right = array.length -1;
+    while (left < right){
+        const currentSum = array[left] + array[right];
+        if (currentSum === target){
+            return [array[left], array[right]];
+        } else if (currentSum < target){
+            left++;
+        } else if (currentSum > target){
+            right--;
+        }
+    }
+    return [];
+}
+
 // FIND 3 LARGEST NUMBERS
 
 array = [141, 1, 17, -17, -27, 18, 541,8,7,7];
