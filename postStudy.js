@@ -133,3 +133,30 @@ function swap(root){
     root.left = root.right;
     root.right = temp;
 }
+
+//LEETCODE 238. PRODUCT OF ARRAY EXCEPT SELF
+
+function product(a){
+    let product = 1;
+    var newArr= [];
+    let i = 0;
+    let j = a.length -1;
+    while (i < a.length){
+        if ( j == 0){
+            product = product * a[j];
+            newArr.push(product);
+            i++;
+            j = a.length-1;
+            product = 1;
+        } 
+        else if (j !== i){
+            product = product * a[j];
+            j--;
+        } else {
+            j--;
+        }
+    }
+    return newArr;
+}
+
+product([1,2,3,4]);
