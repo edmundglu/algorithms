@@ -160,3 +160,21 @@ function product(a){
 }
 
 product([1,2,3,4]);
+
+// MIN NUMBER OF COINS
+
+function minCoins(target, coins){
+    let count = 0;
+    for (let i = coins.length-1; i > (-1); i-- ){
+        if (target == 0){
+            return count;
+        }
+        while (coins[i] <= target){
+            target -= coins[i];
+            count += 1;
+        }
+    }
+    return count;
+}
+
+minCoins(7, [1,5,10]);
