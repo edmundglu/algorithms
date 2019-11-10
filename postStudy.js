@@ -1,3 +1,5 @@
+import { monitorEventLoopDelay } from "perf_hooks";
+
 //TWO SUM
 function twoSum(array, target){
     array.sort((a,b) => a - b);
@@ -174,7 +176,33 @@ function minCoins(target, coins){
             count += 1;
         }
     }
-    return count;
+    if (target == 0){
+        return count;
+    } 
+    else{
+        return (-1);
+    }
 }
 
 minCoins(7, [1,5,10]);
+
+// SELECTION SORT
+
+function selection(x){
+    for (let i = 0; i <x.length; i++){
+        let j = i;
+        let minIdx = i;
+        while (j < x.length){
+            if (x[j] < x[minIdx]){
+                minIdx = j;
+            }
+            j++;
+        }
+        let temp = x[i];
+        x[i] = x[minIdx];
+        x[minIdx] = temp;
+    }
+    return x;
+}
+
+selection([8,5,2,9,5,6,3]);
