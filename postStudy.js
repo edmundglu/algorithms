@@ -206,3 +206,59 @@ function selection(x){
 }
 
 selection([8,5,2,9,5,6,3]);
+
+//CESAR CIPHER NEEDS TO BE FIXED
+
+function cesar(string,x){
+    string.split();
+    const newChange = x % 26;
+    const dict = '0abcdefghijklmnopqrstuvwxyz';
+    if(newChange == 0){
+        return string;
+    }
+    for (let i = 0; i < string.length; i++){
+        console.log(string[i], dict.indexOf(string[i]), 'shifts to', dict.indexOf(string[i]) + x);
+        let currentKey = dict.indexOf(string[i]);
+        let newKeyTotal = currentKey + newChange;
+        console.log(newKeyTotal, 'new key total')
+        if (newKeyTotal <= 26){
+            string[i] = dict[newKeyTotal];
+            console.log(dict[newKeyTotal], 'pulling from dict');
+            console.log(string[i]);
+        } else if (newKeyTotal > 26){
+            newKeyTotal = newKeyTotal % 26;
+            console.log(newKeyTotal, 'after else if')
+            string[i] = dict[newKeyTotal];
+            console.log(string[i]);
+        }
+    }
+    return string;
+}
+
+cesar('xyz', 2);
+
+//3Sum
+
+function threeSum(arr, target){
+    const triplets=[];
+    arr.sort((a,b) => a-b);
+    for (let i = 0; i < arr.length-2; i++){
+        let left = i + 1;
+        let right = arr.length-1;
+        let sum = 0;
+        while (left < right){
+            sum = arr[i]+ arr[left] + arr[right]; 
+            if (sum == target){
+                triplets.push([arr[i], arr[left], arr[right]]);
+                left++;
+            } else if (sum < target){
+                left++;
+            } else if (sum > target){
+                right--;
+            }
+        }
+    }
+    return triplets;
+}
+
+threeSum([12,3,1,2,-6,5,-8,6], 0);
