@@ -213,26 +213,21 @@ function cesar(string,x){
     string.split();
     const newChange = x % 26;
     const dict = '0abcdefghijklmnopqrstuvwxyz';
+    const newLetters = [];
     if(newChange == 0){
         return string;
     }
     for (let i = 0; i < string.length; i++){
-        console.log(string[i], dict.indexOf(string[i]), 'shifts to', dict.indexOf(string[i]) + x);
         let currentKey = dict.indexOf(string[i]);
         let newKeyTotal = currentKey + newChange;
-        console.log(newKeyTotal, 'new key total')
         if (newKeyTotal <= 26){
-            string[i] = dict[newKeyTotal];
-            console.log(dict[newKeyTotal], 'pulling from dict');
-            console.log(string[i]);
+            newLetters.push(dict[newKeyTotal]) ;
         } else if (newKeyTotal > 26){
             newKeyTotal = newKeyTotal % 26;
-            console.log(newKeyTotal, 'after else if')
-            string[i] = dict[newKeyTotal];
-            console.log(string[i]);
+            newLetters.push(dict[newKeyTotal]) ;
         }
     }
-    return string;
+    return newLetters.join('');
 }
 
 cesar('xyz', 2);
