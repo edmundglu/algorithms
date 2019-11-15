@@ -310,6 +310,7 @@ function editDistance(x,y){
         }
     }
     console.log(edits);
+    return edits[y.length][x.length];
 
 }
 
@@ -320,3 +321,27 @@ editDistance(x,y);
 var x = "abc"
 var y = "yabd"
 editDistance(x,y);
+
+//KADANES ALGO
+
+function kadane(x){
+    let max = x[0]; //save the max value
+    let sum = x[0]; //current sum 
+    let array = []; //each value that was used to get the current sum
+    for (let i = 1; i < x.length; i++){
+        sum += x[i];
+        array.push(x[i]);
+        if (sum > max){
+            max = sum;
+        }
+        if (x[i+1] > sum && sum < 0){ //if the next value is greater than the current sum AND not negative, reset the current sum and drop the previous
+            sum = x[i+1];
+            array = [x[i+1]];
+            i++;
+        }
+    }
+    console.log(array);
+    return max;
+}
+
+kadane([3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4]);
