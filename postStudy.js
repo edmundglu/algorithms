@@ -207,7 +207,7 @@ function selection(x){
 
 selection([8,5,2,9,5,6,3]);
 
-//CESAR CIPHER NEEDS TO BE FIXED
+//CESAR CIPHER 
 
 function cesar(string,x){
     string.split();
@@ -257,3 +257,66 @@ function threeSum(arr, target){
 }
 
 threeSum([12,3,1,2,-6,5,-8,6], 0);
+
+function change(amt,coins){
+    var ways = new Array(amt+1).fill(0);
+    ways[0] = 1;
+    for (let i = 0; i < coins.length; i++){
+        for (let j = 1; j < ways.length; j++){
+            if (coins[i] <= j){
+                ways[j] += ways[j-coins[i]];
+            }
+        }
+    }
+    return ways[amt];
+}
+
+change(6, [1,5]);
+
+// return numOfCoins[n] !== Infinity ? numOfCoins[n] : -1;
+
+// ALSO MEANS :
+
+// if (numOfCoins !== Infinity) {
+//     return numOfCoins[n];
+// } else {
+//     return -1;
+// }
+
+
+//LEVENSHTEIN DISTANCE - REPLACE | INSERT
+//                       DELETE  | [YOU ARE HERE]
+
+function editDistance(x,y){
+    const edits = [];
+    let row = [];
+    for (let i = 0; i < x.length + 1; i++){
+        row.push(i);
+    }
+    edits.push(row);
+    for (let j = 1; j < y.length+1; j++){
+        row = [];
+        row.push(j);
+        edits.push(row);
+    }
+    console.log('og',edits);
+    for (let z = 1; z < y.length + 1; z++){
+        for (let q = 1; q < x.length +1; q++){
+            if (x[q-1] !== y[z-1]){
+                edits[z][q] = Math.min(edits[z-1][q], edits[z][q-1], edits[z-1][q-1]) + 1;
+            } else{
+                edits[z][q] = edits[z-1][q-1];
+            }
+        }
+    }
+    console.log(edits);
+
+}
+
+var x = "benyam"
+var y = "ephrem"
+editDistance(x,y);
+
+var x = "abc"
+var y = "yabd"
+editDistance(x,y);
