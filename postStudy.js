@@ -18,6 +18,19 @@ function twoSum(array, target){
     return [];
 }
 
+function twoSumBruteForce(array,target){
+    for (let i = 0; i < array.length - 1; i++){
+        for (let j = i + 1; j < array.length; j++){
+            if (array[i] + array[j] === target) {
+                return [i, j];
+            }
+        }
+    }
+    return 'not found';
+}
+
+twoSumBruteForce([11,7,2,15], 9);
+
 // FIND 3 LARGEST NUMBERS
 
 array = [141, 1, 17, -17, -27, 18, 541,8,7,7];
@@ -290,22 +303,22 @@ change(6, [1,5]);
 function editDistance(x,y){
     const edits = [];
     let row = [];
-    for (let i = 0; i < x.length + 1; i++){
-        row.push(i);
+    for (let i = 0; i < x.length + 1; i++){ // x will be row
+        row.push(i); //index 0 will have a 0 for empty string
     }
     edits.push(row);
-    for (let j = 1; j < y.length+1; j++){
+    for (let j = 1; j < y.length+1; j++){ // y will be columns
         row = [];
-        row.push(j);
+        row.push(j); // fill first column up to the length because we leave one empty spot for empty string
         edits.push(row);
     }
     console.log('og',edits);
     for (let z = 1; z < y.length + 1; z++){
         for (let q = 1; q < x.length +1; q++){
-            if (x[q-1] !== y[z-1]){
+            if (x[q-1] !== y[z-1]){ // if letters do not match, take the minimum amount of actions needed to edit PLUS ONE
                 edits[z][q] = Math.min(edits[z-1][q], edits[z][q-1], edits[z-1][q-1]) + 1;
             } else{
-                edits[z][q] = edits[z-1][q-1];
+                edits[z][q] = edits[z-1][q-1]; // if current letters are the same, pull from the diagonal value because you are excluding the action needed 
             }
         }
     }
@@ -345,3 +358,21 @@ function kadane(x){
 }
 
 kadane([3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4]);
+
+// LOWEST COMMON ANCESTOR BINARY TREE
+
+function lca(root, x, y){
+    if (root == null || root == x || root == y){
+        return root;
+    }
+    let left = lca(root.left, x, y);
+    let right = lca(root.right, x, y);
+    if (left != null && right != null){
+        return root;
+    }
+    if (left != null) {
+        return left;
+    } else {
+        return right;
+    }
+}
