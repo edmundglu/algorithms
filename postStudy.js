@@ -376,3 +376,44 @@ function lca(root, x, y){
         return right;
     }
 }
+
+// const q = [1,2,3];
+// while (q.length > 0){
+//     const size = q.length;
+//     const temp = [];
+//     for (let i = 0; i < size; i++){
+//         const node = q.shift();
+//         temp.push(node.val);
+//         console.log(q);
+//         console.log('temp:', temp);
+//     }
+// }
+
+// LEVEL ORDER TRAVERSAL
+
+function levelOrderTraversal(root){
+    if (!root){
+        return [];
+    }
+    const queue = [];
+    queue.push(root);
+    const result = [];
+    while (queue.length > 0){
+        const size = queue.length; 
+            // size is what helps set up the 'for loop' to only iterate through each level
+        const currentLevel = [];
+        for (let i = 0; i < size; i++){ 
+            // iterates only through what was previously pushed into the queue
+            const current = queue.shift();
+            currentLevel.push(current.val);
+            if(current.left){
+                queue.push(current.left);
+            }
+            if (current.right){
+                queue.push(current.right);
+            }
+        }
+        result.push(curentLevel);
+    }
+    return result;
+}
