@@ -417,3 +417,29 @@ function levelOrderTraversal(root){
     }
     return result;
 }
+
+// PERMUTATIONS
+
+function perms(arr){
+    const perms =[];
+    permsHelp(0, arr, permutations);
+    return perms;
+}
+
+function permsHelp(i, arr, perms){
+    if (i === arr.length -1){
+        perms.push(arr.slice());
+    } else {
+        for (let j = i; j < arr.length; j++){
+            swap(i, j, arr);
+            permsHelp(i+1, arr, perms);
+            swap(i,j, arr);
+        }
+    }
+}
+
+function swap(i, j, arr){
+    const temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
