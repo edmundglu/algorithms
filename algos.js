@@ -300,3 +300,68 @@ var longestCommonPrefix = function (strs) {
 
 longestCommonPrefix(['flower', 'flow', 'flight']);
 longestCommonPrefix(['flower', 'flower', 'flower', 'flower', 'flower']);
+
+//SEANPRASAD
+
+var containsDuplicate = function (nums) {
+  let yes = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] in yes) {
+      return true;
+    } else {
+      yes[nums[i]] = false;
+    }
+  }
+  return false;
+};
+
+var findDisappearedNumbers = function (nums) {
+  let res = [];
+  let count = 1;
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== count) {
+      res.push(count);
+    }
+    if (nums[i] == nums[i + 1]) {
+      count--;
+    }
+    count++;
+  }
+  console.log(res.length);
+  if (res.length == 0) {
+    return count;
+  } else {
+    return res;
+  }
+};
+
+findDisappearedNumbers([1, 1]);
+
+var nextGreatestLetter = function (letters, target) {
+  let smallest = '';
+  for (let i = 0; i < letters.length; i++) {
+    let current = letters[i].charCodeAt();
+    console.log(letters[i].charCodeAt());
+  }
+};
+
+nextGreatestLetter(['c', 'f', 'j'], 'a');
+
+var peakIndexInMountainArray = function (arr) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor(left + (right - left) / 2);
+    if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) {
+      return mid;
+    } else if (arr[mid] < arr[mid + 1]) {
+      left = mid + 1;
+    } else if (arr[mid] < arr[mid - 1]) {
+      right = mid - 1;
+    }
+  }
+};
+
+peakIndexInMountainArray([3, 4, 5, 1]);
